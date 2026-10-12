@@ -8,29 +8,37 @@ export default function App() {
   const pantalla = pantallas[actual];
 
   return (
-    // key={actual} hace que React "reinicie" el div y se repita la animación
-    <main className="pantalla" key={actual}>
-      {pantalla.imagen && <img src={pantalla.imagen} alt="" />}
-      {pantalla.titulo && <h1>{pantalla.titulo}</h1>}
-      {pantalla.texto && <p>{pantalla.texto}</p>}
+    <>
+      {/* key={actual} reinicia el elemento y repite la animación en cada pantalla */}
+      <main className="pantalla" key={actual}>
+        {pantalla.imagen && (
+          <img
+            className={pantalla.imagenAncha ? "principal ancha" : "principal"}
+            src={pantalla.imagen}
+            alt=""
+          />
+        )}
+        {pantalla.titulo && <h1>{pantalla.titulo}</h1>}
+        {pantalla.texto && <p>{pantalla.texto}</p>}
 
-      {pantalla.carta && (
-        <div className="papel">
-          {pantalla.carta.map((parrafo, i) => (
-            <p key={i}>{parrafo}</p>
-          ))}
-        </div>
-      )}
+        {pantalla.carta && (
+          <div className="papel">
+            {pantalla.carta.map((parrafo, i) => (
+              <p key={i}>{parrafo}</p>
+            ))}
+          </div>
+        )}
 
-      {pantalla.botones && (
-        <div className="botones">
-          {pantalla.botones.map((b) => (
-            <button key={b.texto} onClick={() => setActual(b.ir)}>
-              {b.texto}
-            </button>
-          ))}
-        </div>
-      )}
-    </main>
+        {pantalla.botones && (
+          <div className="botones">
+            {pantalla.botones.map((b) => (
+              <button key={b.texto} onClick={() => setActual(b.ir)}>
+                {b.texto}
+              </button>
+            ))}
+          </div>
+        )}
+      </main>
+    </>
   );
 }

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -8,9 +12,12 @@ body {
   font-family: Georgia, serif;
   color: #8b1e2d;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .pantalla {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,6 +36,17 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.principal {
+  max-width: 160px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.principal.ancha {
+  max-width: 260px;
+  max-height: 170px;
 }
 
 h1 {
@@ -64,9 +82,16 @@ button:hover {
   transform: scale(1.06);
 }
 
+.deco {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 0;
+}
+
 .papel {
   background: #fff;
-  max-height: 85vh;
+  max-height: 80vh;
   overflow-y: auto;
   padding: 28px;
   border-radius: 8px;
@@ -75,4 +100,13 @@ button:hover {
 }
 .papel p {
   margin-bottom: 14px;
+}
+.papel p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
 }
